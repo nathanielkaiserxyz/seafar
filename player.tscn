@@ -1,0 +1,138 @@
+[gd_scene load_steps=18 format=3 uid="uid://cw4bne238mu1e"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ivuwl"]
+[ext_resource type="Texture2D" uid="uid://bvesu5n8faxik" path="res://Assets/Character/player.png" id="2_j6h61"]
+[ext_resource type="PackedScene" uid="uid://buyfbajs81t3a" path="res://bullet.tscn" id="2_omo3i"]
+[ext_resource type="Texture2D" uid="uid://c3oxhd8p2p3mh" path="res://Assets/Character/gun.png" id="3_qx7f6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ik1"]
+size = Vector2(8, 8)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vfvb2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("gunrotation:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("gunrotation/bulletSpawn:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("AnimatedSprite2D:animation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D:frame")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("AnimatedSprite2D:flip_h")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyw6i"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8473"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umn8d"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e80gj"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dviv"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o0xe"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj1ur"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nhqa"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faoi0"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(64, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmpep"]
+atlas = ExtResource("2_j6h61")
+region = Rect2(72, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d27pj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyw6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8473")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umn8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e80gj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dviv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o0xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj1ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nhqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faoi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmpep")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ivuwl")
+bullet = ExtResource("2_omo3i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j5ik1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vfvb2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d27pj")
+animation = &"run"
+
+[node name="gunrotation" type="Node2D" parent="."]
+
+[node name="gun" type="Sprite2D" parent="gunrotation"]
+position = Vector2(5, 0)
+scale = Vector2(0.239465, 0.242996)
+texture = ExtResource("3_qx7f6")
+
+[node name="bulletSpawn" type="Node2D" parent="gunrotation"]
+position = Vector2(6, 0)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2tlym2t87fu8"]
+
+[ext_resource type="Script" path="res://Steam.gd" id="1_wmoj5"]
+[ext_resource type="Script" path="res://main.gd" id="1_xsx8q"]
+[ext_resource type="FontFile" uid="uid://brxs7eiq5jysm" path="res://Assets/Fonts/Pixeled.ttf" id="3_lnvdf"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_xsx8q")
+
+[node name="Steam" type="Node" parent="."]
+script = ExtResource("1_wmoj5")
+
+[node name="host" type="Button" parent="."]
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 101.0
+offset_bottom = 69.0
+scale = Vector2(0.547175, 0.473339)
+theme_override_fonts/font = ExtResource("3_lnvdf")
+text = "Host"
+
+[node name="refesh" type="Button" parent="."]
+offset_left = 14.0
+offset_top = 37.0
+offset_right = 153.0
+offset_bottom = 95.0
+scale = Vector2(0.353554, 0.588579)
+theme_override_fonts/font = ExtResource("3_lnvdf")
+text = "refresh
+"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="LobbyContainer" type="ScrollContainer" parent="."]
+offset_left = 95.0
+offset_top = 34.0
+offset_right = 403.0
+offset_bottom = 230.0
+
+[node name="Lobbies" type="VBoxContainer" parent="LobbyContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="refesh" to="." method="_on_refesh_pressed"]
