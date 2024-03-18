@@ -4,7 +4,6 @@ var lobby_id = 0
 var peer = SteamMultiplayerPeer.new()
 @onready var ms = $MultiplayerSpawner
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ms.spawn_function = spawn_level
@@ -54,7 +53,6 @@ func _on_lobby_match_list(lobbies):
 		but.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 		
 		$LobbyContainer/Lobbies.add_child(but)
-
 
 func _on_refesh_pressed():
 	if $LobbyContainer/Lobbies.get_child_count() > 0:

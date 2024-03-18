@@ -1,12 +1,18 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-var direction : Vector2
+const SPEED = 100.0
+var bounce = 2
 
 func _ready():
-	direction = Vector2(1,0).rotated(rotation)
+	velocity = Vector2(SPEED,0).rotated(rotation)
 
 func _physics_process(delta):
-	velocity = SPEED * direction
-
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+		bounce -= 1
+		if collision.get_collider().has_method("hit"):
+			collision.get_collider().hit()
+			queue_free()
+	if bounce <= 0:
+		queue_free()

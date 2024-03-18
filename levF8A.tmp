@@ -37,8 +37,8 @@ layer_0/tile_data = PackedInt32Array(-720896, 0, 0, -655360, 0, 0, -589824, 0, 0
 
 [node name="spawnLocations" type="Node2D" parent="."]
 
-[node name="spawn1" type="Node2D" parent="spawnLocations"]
+[node name="spawn1" type="Node2D" parent="spawnLocations" groups=["spawnLocations\\"]]
 position = Vector2(-16, 16)
 
-[node name="spawn2" type="Node2D" parent="spawnLocations"]
-position = Vector2(24, -24)
+[node name="spawn2" type="Node2D" parent="spawnLocations" groups=["spawnLocations\\"]]
+position = Vector2(16, -16)

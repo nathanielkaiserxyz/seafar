@@ -1,15 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cw4bne238mu1e"]
+[gd_scene load_steps=20 format=3 uid="uid://cw4bne238mu1e"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ivuwl"]
 [ext_resource type="Texture2D" uid="uid://bvesu5n8faxik" path="res://Assets/Character/player.png" id="2_j6h61"]
 [ext_resource type="PackedScene" uid="uid://buyfbajs81t3a" path="res://bullet.tscn" id="2_omo3i"]
 [ext_resource type="Texture2D" uid="uid://c3oxhd8p2p3mh" path="res://Assets/Character/gun.png" id="3_qx7f6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ik1"]
-size = Vector2(8, 8)
+[ext_resource type="Texture2D" uid="uid://nksppg02ewql" path="res://Assets/Character/tankGun.png" id="5_66ae6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vfvb2"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath("Player:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 properties/1/path = NodePath("gunrotation:rotation")
@@ -18,53 +16,50 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("gunrotation/bulletSpawn:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("AnimatedSprite2D:animation")
+properties/3/path = NodePath("Player:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("AnimatedSprite2D:frame")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("AnimatedSprite2D:flip_h")
-properties/5/spawn = true
-properties/5/replication_mode = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oyw6i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ik1"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2x3c"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(0, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m8473"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2y0s"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(8, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_umn8d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vovyj"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(16, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e80gj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_52v6o"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(24, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8dviv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_olpud"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(32, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3o0xe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hqlf"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(40, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sj1ur"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3wkk"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(48, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0nhqa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_17jrj"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(56, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_faoi0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0hsq"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(64, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vmpep"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_blmci"]
 atlas = ExtResource("2_j6h61")
 region = Rect2(72, 0, 8, 8)
 
@@ -72,16 +67,16 @@ region = Rect2(72, 0, 8, 8)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oyw6i")
+"texture": SubResource("AtlasTexture_s2x3c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m8473")
+"texture": SubResource("AtlasTexture_w2y0s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_umn8d")
+"texture": SubResource("AtlasTexture_vovyj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e80gj")
+"texture": SubResource("AtlasTexture_52v6o")
 }],
 "loop": true,
 "name": &"idle",
@@ -89,50 +84,74 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8dviv")
+"texture": SubResource("AtlasTexture_olpud")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3o0xe")
+"texture": SubResource("AtlasTexture_6hqlf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sj1ur")
+"texture": SubResource("AtlasTexture_m3wkk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0nhqa")
+"texture": SubResource("AtlasTexture_17jrj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_faoi0")
+"texture": SubResource("AtlasTexture_h0hsq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vmpep")
+"texture": SubResource("AtlasTexture_blmci")
 }],
 "loop": true,
 "name": &"run",
-"speed": 15.0
+"speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_ivuwl")
-bullet = ExtResource("2_omo3i")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqmm5"]
+size = Vector2(8, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j5ik1")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Player" type="Node2D"]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_vfvb2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ivuwl")
+bullet = ExtResource("2_omo3i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_j5ik1")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_d27pj")
-animation = &"run"
+animation = &"idle"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../gunrotation")
+update_rotation = false
+
+[node name="fire_cooldown" type="Timer" parent="Player"]
+wait_time = 0.75
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_yqmm5")
 
 [node name="gunrotation" type="Node2D" parent="."]
 
 [node name="gun" type="Sprite2D" parent="gunrotation"]
-position = Vector2(5, 0)
+position = Vector2(7, 0)
 scale = Vector2(0.239465, 0.242996)
 texture = ExtResource("3_qx7f6")
 
 [node name="bulletSpawn" type="Node2D" parent="gunrotation"]
-position = Vector2(6, 0)
+position = Vector2(8, 0)
+
+[node name="turret" type="Sprite2D" parent="gunrotation"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_66ae6")
+
+[connection signal="timeout" from="Player/fire_cooldown" to="Player" method="_on_fire_cooldown_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
