@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var cam = $Camera2D
 @export var bullet :PackedScene
 
-const SPEED = 50
+const SPEED = 100
 #const ROTATION_SPEED = 5
 var can_fire = true
 

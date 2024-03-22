@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cco4lmjerk45h"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_0glq1"]
+[ext_resource type="Texture2D" uid="uid://dugj5rmrmpi8x" path="res://Assets/Character/tankBody.png" id="2_j01lt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nasno"]
+size = Vector2(10, 10)
+
+[node name="enemy_blob" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_0glq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_j01lt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nasno")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

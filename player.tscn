@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cw4bne238mu1e"]
+[gd_scene load_steps=19 format=3 uid="uid://cw4bne238mu1e"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ivuwl"]
 [ext_resource type="Texture2D" uid="uid://bvesu5n8faxik" path="res://Assets/Character/player.png" id="2_j6h61"]
 [ext_resource type="PackedScene" uid="uid://buyfbajs81t3a" path="res://bullet.tscn" id="2_omo3i"]
 [ext_resource type="Texture2D" uid="uid://c3oxhd8p2p3mh" path="res://Assets/Character/gun.png" id="3_qx7f6"]
-[ext_resource type="Texture2D" uid="uid://nksppg02ewql" path="res://Assets/Character/tankGun.png" id="5_66ae6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vfvb2"]
 properties/0/path = NodePath("Player:position")
@@ -115,6 +114,9 @@ size = Vector2(8, 8)
 replication_config = SubResource("SceneReplicationConfig_vfvb2")
 
 [node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+scale = Vector2(2, 2)
+wall_min_slide_angle = 0.0
 script = ExtResource("1_ivuwl")
 bullet = ExtResource("2_omo3i")
 
@@ -140,18 +142,16 @@ wait_time = 0.75
 shape = SubResource("RectangleShape2D_yqmm5")
 
 [node name="gunrotation" type="Node2D" parent="."]
+scale = Vector2(2, 2)
 
 [node name="gun" type="Sprite2D" parent="gunrotation"]
+z_index = 1
 position = Vector2(7, 0)
 scale = Vector2(0.239465, 0.242996)
 texture = ExtResource("3_qx7f6")
 
 [node name="bulletSpawn" type="Node2D" parent="gunrotation"]
 position = Vector2(8, 0)
-
-[node name="turret" type="Sprite2D" parent="gunrotation"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("5_66ae6")
 
 [connection signal="timeout" from="Player/fire_cooldown" to="Player" method="_on_fire_cooldown_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
